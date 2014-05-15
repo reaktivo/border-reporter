@@ -1,6 +1,8 @@
+debug = require('debug')('border:calculate')
 { max, min, abs } = Math
 
 calculate = (rows, ttl) =>
+  debug "calculate() with rows of length: #{rows.length}"
   if rows.length > 1
     simpleAverage = average rows
     for row in rows
