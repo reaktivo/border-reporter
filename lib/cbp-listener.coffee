@@ -13,8 +13,7 @@ class CBPListener
   setup: =>
     @reporter.on 'report', (report) =>
       debug "New CBP Report for #{report.port} - #{report.type} - #{report.lane}: #{report.delay}"
-      report.userId = 'cbp'
-      report.createdAt = new Date(report.updated_at * 1000)
+      report.user_id = 'cbp'
       @handler report, (err) -> # ignore error
 
 module.exports = (handler) -> new CBPListener(handler)
