@@ -9,7 +9,7 @@
   "author": "Marcel Miranda",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "border-wait": "~0.10.1",
+    "border-wait": "~0.10.2",
     "coffee-script": "~1.7.1",
     "eventemitter2": "~0.4.13",
     "pg-query": "~0.10.0",
