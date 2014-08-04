@@ -1,12 +1,15 @@
 debug = require('debug')('border:calculate')
-{ max, min, abs } = Math
+{ max, pluck } = require 'underscore'
 
-calculate = (rows, ttl) =>
+calculate = (rows) =>
   debug "calculate() with rows of length: #{rows.length}"
   if rows.length > 1
+    maxCreatedAgo = max(pluck rows, 'created_ago') + 1
+    for row in rows
+      row.relevancy = 1 - (row.created_ago / maxCreatedAgo)
     simpleAverage = average rows
     for row in rows
-      awayFromAverage = 1 - min(abs(simpleAverage - row.delay), ttl) / ttl
+      awayFromAverage = 1 - Math.abs(simpleAverage - row.delay) / maxCreatedAgo
       row.relevancy *= awayFromAverage
     average rows
   else
